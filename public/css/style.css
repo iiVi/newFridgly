@@ -1,0 +1,214 @@
+body {
+  background: url(https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/19/199/199814/iuofjgenwsaxmjokhhpnwmuamrshk0al5nfxhjghon9uaudbzdecnih2m48ux2yu-o.jpg?1412531086) no-repeat center fixed;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  font-family: Didot bold;
+}
+
+h2 {
+  text-align: center;
+  font-family: Didot italic;
+}
+button {
+  color: #900;
+  background: lightgrey;
+  font-weight: bold;
+  border-radius:6px;
+  font-family: 'Oswald';
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 3px double #FC6;
+  border-top-color: #FC9;
+  border-left-color: #FC9;
+}
+
+button:hover {
+  color:#f00;
+  box-shadow: 0px 0px 1px #777;
+}
+
+#advanced-search-container {
+  /*visibility: visible;*/
+}
+
+#fridge-ingredients-container {
+  background: url(http://www.clker.com/cliparts/w/d/g/L/n/8/fridge.svg);
+  background-size: cover;
+  position: absolute;
+
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  display: block;
+  top: 50px;
+  left: 50px;
+  height: 70%;
+  width: 22%;
+
+}
+
+#fridge-buttons {
+  position: relative;
+  left: 25%;
+  width:50%;
+}
+
+#fridge-buttons button {
+  width: 100%;
+  margin-top: 2px;
+}
+#fridge-ingredients-list-container {
+  position: relative;
+  text-align: center;
+  top: 30px;
+  z-index: 1;
+  font-size: 20px;
+  list-style-type: none;
+  overflow: auto;
+  height: 36%;
+  width: 100%;
+}
+
+#search-container {
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-radius: 1px;
+  height: 50%;
+  width: 40%;
+}
+
+#search-ingredients-container {
+  height: 50%;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  list-style-type: none;
+  font-size: 20px;
+}
+
+#search-buttons {
+  width: 19%;
+  display: inline;
+}
+
+#search-buttons button {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+#recipe-results-container {
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  height: 650px;
+  text-align: center;
+  font-size: 16px;
+  overflow: scroll;
+
+}
+
+#recipe-modal-container {
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  height: 650px;
+  text-align: center;
+  font-size: 16px;
+  overflow: scroll;
+
+}
+
+#recipe-results-container li {
+  border: 1px solid;
+  padding: 2px;
+  
+}
+
+p {
+  color: red;
+}
+
+li.recipe-name {
+  list-style-type: none;
+}
+
+br {
+  margin: 3px;
+}
+
+li.recipe-id {
+  display: none;
+}
+
+#recipe-results-container li:hover {
+  background: #ffffcc;;
+}
+
+#pantry-ingredients-container {
+  background: url(http://images.ohsheglows.com/wp-content/uploads/2010/09/20100911IMG_28482_thumb.jpg);
+  background-size: cover;
+  position: absolute;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  top:50px;
+  right:50px;
+  height: 70%;
+  width: 22%;
+}
+
+#pantry-buttons {
+  position: relative;
+  left: 25%;
+  width:50%;
+}
+
+#pantry-buttons button {
+  width: 100%;
+  margin-top: 2px;
+}
+
+#pantry-ingredients-list-container {
+  position: relative;
+  text-align: center;
+  top: 30px;
+  font-size: 20px;
+  list-style-type: none;
+  overflow: auto;
+  height: 36%;
+  width:100%;
+}
+
+#users-menu {
+  position: absolute;
+  top: 5px;
+  right: 30%;
+}
+
+#show-recipe {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+}
+
+#close {
+  text-align: left;
+  color: red;
+  background-color: white;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+#show-recipe iframe {
+  height: 100%;
+  width:100%;
+}

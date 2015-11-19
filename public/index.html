@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Fridgly</title>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.14/backbone.localStorage-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src='js/app.js'></script>
+	<script src='js/models/fridge_ingredient.js'></script>
+	<script src='js/models/pantry_ingredient.js'></script>
+	<script src="js/models/user.js"></script>
+	<script src="js/models/recipe.js"></script>
+	<script src='js/collections/fridge_ingredients.js'></script>
+	<script src='js/collections/pantry_ingredients.js'></script>
+	<script src='js/collections/search_ingredients.js'></script>
+	<script src='js/collections/recipes.js'></script>
+	<script src='js/collections/users.js'></script>
+	<script src='js/views/users/create_user.js'></script>
+	<script src='js/views/users/create_user.js'></script>
+	<script src='js/views/users/create_user.js'></script>
+	<script src='js/views/searches/search.js'></script>
+	<script src='js/views/searches/advanced_search.js'></script>
+	<script src='js/views/searches/search_results.js'></script>
+	<script src='js/views/searches/modal_view.js'></script>
+	<script src='js/views/searches/recipe.js'></script>
+	<script src='js/views/searches/recipe_list.js'></script>
+	<script src='js/views/ingredients/fridge_ingredients.js'></script>
+	<script src='js/views/ingredients/fridge_ingredients_list.js'></script>
+	<script src='js/views/ingredients/pantry_ingredients.js'></script>
+	<script src='js/views/ingredients/pantry_ingredients_list.js'></script>
+
+</head>
+
+<body>
+	
+	<h1>Fridgly</h1>
+	<div id="users-menu">
+		<select name="userDropDown" id="userDropDown">
+		</select>
+		<button class='select-user'>Select User</button>
+		<input id="create-user-input" type="text" class="user" placeholder="New User">
+		<button class='create-user'>Create User</button>
+		<button class='edit-user'>Edit Current User</button>
+	</div>	
+
+
+	<div id='fridge-ingredients-container'>
+		<h2>Fridge Ingredients</h1>
+			<div id="fridge-buttons">
+				<input id="add-fridge-ingredient-input" type="text" class="ingredient" placeholder="New Ingredient">
+				<button class="add-ingredient">Add Ingredient</button>
+				<button class="delete-fridge-ingredient">Remove Ingredient</button>
+				<button class="add-to-search">Add to Search</button>
+				<button class="move-to-pantry">Move to Pantry</button>
+				<button class="search-oldest">Add Oldest to Search</button>
+				<select name="number of ingredients" id="oldestNumber">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+		<div id='fridge-ingredients-list-container'></div>
+	</div>
+
+	<div id='pantry-ingredients-container'>
+		<h2>Pantry Ingredients</h1>
+			<div id="pantry-buttons">
+				<input id="add-pantry-ingredient-input" type="text" class="ingredient" placeholder="New Ingredient">
+				<button class="add-pantry-ingredient">Add Ingredient</button>
+				<button class="delete-pantry-ingredient">Remove Ingredient</button>
+				<button class="move-to-fridge">Move to Fridge</button>
+			</div>
+		<div id='pantry-ingredients-list-container'></div>
+	</div>
+	<div id='search-container'>
+    <h2>Search</h1>
+    <div id='search-ingredients-container'></div>
+    <div id='search-buttons'>
+      <button class='search-button'>Search For Recipes</button>
+      <button class='advanced-search-button'>Advanced Search</button>
+      <button class='reset-search-button'>Reset Search</button>
+      
+    </div>
+    <div id = 'recipe-results-container'></div>
+    <div id = 'recipe-modal-container'></div>
+
+	<div id='advanced-search-container'>
+		<h2>Advanced Search</h1>
+		<h3>Filter by Holiday</h2>
+		<select name="holdidayDropDown" id="holidayDropDown">
+			<option value="blank">--Select an Option--</option>
+		</select> <br>
+		<h3>Filter by Alergen</h2>
+		<select name="alergenDropDown" id="alergenDropDown">
+			<option value="blank">--Select an Option--</option>
+		</select> <br>
+		<h3>Filter by Cuisine Type</h2>
+		<select name="cuisineDropDown" id="cuisineDropDown">
+			<option value="blank">--Select an Option--</option>
+		</select> <br>
+		<h3>Filter by Course</h2>
+		<select name="courseDropDown" id="courseDropDown">
+			<option value="blank">--Select an Option--</option>
+		</select> <br>
+		<h3>Filter by Diet</h2>
+		<select name="dietDropDown" id="dietDropDown">
+			<option value="blank">--Select an Option--</option>
+		</select> <br>
+		<h3>Set Flavor Levels</h2>
+		<label for="spicy-level-min">Spicy Level Min</label>
+		<input type=range min=0 max=1 value=0 id='spicy-level-min'step=.05 >
+		<label for="spicy-level-max">Spicy Level Max</label>
+		<input type=range min=0 max=1 value=1 id='spicy-level-max'step=.05 ><br>
+		<label for="salty-level-min">Salty Level Min</label>
+		<input type=range min=0 max=1 value=0 id='salty-level-min'step=.05 >
+		<label for="salty-level-max">Salty Level Max</label>
+		<input type=range min=0 max=1 value=1 id='salty-level-max'step=.05 ><br>
+		<label for="sour-level-min">Sour Level Min</label>
+		<input type=range min=0 max=1 value=0 id='sour-level-min'step=.05 >
+		<label for="sour-level-max">Sour Level Max</label>
+		<input type=range min=0 max=1 value=1 id='sour-level-max'step=.05 ><br>
+		<label for="sweet-level-min">Sweet Level Min</label>
+		<input type=range min=0 max=1 value=0 id='sweet-level-min'step=.05 >
+		<label for="sweet-level-max">Sweet Level Max</label>
+		<input type=range min=0 max=1 value=1 id='sweet-level-max'step=.05 ><br>
+		<label for="bitter-level-min">Bitter Level Min</label>
+		<input type=range min=0 max=1 value=0 id='bitter-level-min'step=.05 >
+		<label for="bitter-level-max">Bitter Level Max</label>
+		<input type=range min=0 max=1 value=1 id='bitter-level-max'step=.05 ><br>
+		<label for="meaty-level-min">Meaty Level Min</label>
+		<input type=range min=0 max=1 value=0 id='meaty-level-min'step=.05 >
+		<label for="meaty-level-max">Meaty Level Max</label>
+		<input type=range min=0 max=1 value=1 id='meaty-level-max'step=.05 > <br>
+		<button class='advanced-search-button'>Search For Recipes</button>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+
+	</div>
+		<template id="pantry-ingredients-template">
+			<li class="pantry-ingredient-name" data-id={{pantryIngId}}>{{name}}</span>
+			<input type="checkbox" id ='pantry-ingredient-checkbox' >
+		</template>
+
+		<template id="fridge-ingredients-template">
+			<li class="fridge-ingredient-name" data-id = {{fridgeIngId}}>{{name}}</span>
+			<input type="checkbox" id ='fridge-ingredient-checkbox' >
+		</template>
+
+	<template id="users-template">
+		<h4>Users</h1>
+		<li class="current-user" data-id ='{{id}}'>{{name}}</li>
+		<li class="create-user">Create User</li>
+		<li class="edit-user">Edit Current User</li>
+	</template>
+	
+	<template id='recipe-list-item-template'>
+		<li class='recipe-name'>
+			
+			{{name}}
+			<br>
+			<br>
+		Ingredients Needed: {{ingredients}}
+			<p>Missing Ingredients: {{missingIng}}</p>
+		<li class='recipe-id'>{{recipeId}}</li>			
+	</template>
+	
+	<template id='recipe-modal'>
+		<div id='show-recipe'>
+			<h4 id='close'>[ CLOSE ]</h4>
+			<iframe src="{{recipeUrl}}" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</template>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
